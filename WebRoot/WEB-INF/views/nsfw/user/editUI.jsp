@@ -60,7 +60,7 @@
     </script>   
 </head>
 <body class="rightBody">
-<form id="form" name="form" action="" method="post">
+<form id="form" name="form" action="" method="post" enctype="multipart/form-data">
     <div class="p_d_1">
         <div class="p_d_1_1">
             <div class="content_info">
@@ -70,16 +70,15 @@
     <table id="baseInfo" width="100%" align="center" class="list" border="0" cellpadding="0" cellspacing="0"  >
         <tr>
             <td class="tdBg" width="200px">所属部门：</td>
-            <%-- <td><s:select name="user.dept" list="#{'部门A':'部门A','部门B':'部门B'}/></td> --%>
             <td>
             	<c:if test="${user.dept=='部门A'}">
-	            	<select name="user.dept">
+	            	<select name="dept">
 		            	<option value="部门A" selected = "selected">部门A</option>
 		 	 			<option value="部门B">部门B</option>
 	            	</select>
 	            </c:if>
 	            <c:if test="${user.dept=='部门B'}">
-	            	<select name="user.dept">
+	            	<select name="dept">
 		            	<option value="部门A">部门A</option>
 		 	 			<option value="部门B" selected = "selected">部门B</option>
 	            	</select>
@@ -91,50 +90,46 @@
             <td>
                 <c:if test="${user.headImg!=null&&user.headImg!=''}">
                     <img src="${basePath}${user.headImg }" width="100" height="100"/>
-                    <input type="hidden" name="user.headImg" value="${user.headImg}"/>
+                    <input type="hidden" name="headImg" value="${user.headImg}"/>
                     ${basePath}
                 </c:if>
                 <c:if test="${user.headImg==null&&user.headImg==''}">
-                    <%-- <img src="${basePath}${user.headImg }" width="100" height="100"/> --%>
+                    <img src="${basePath}${user.headImg }" width="100" height="100"/>
                 </c:if>
-                <input type="hidden" name="user.headImg" value="${user.headImg}"/>
+                <input type="hidden" name="headImg" value="${user.headImg}"/>
                 <input type="file" name="headImg"/>
             </td>
         </tr>
         <tr>
             <td class="tdBg" width="200px">用户名：</td>
-            <%-- <td><s:textfield name="user.name"/> </td> --%>
             <td>
-           		<input type="text" name="user.name" id="name" value="${user.name }"/>
+           		<input type="text" name="name" id="name" value="${user.name }"/>
             </td>
         </tr>
         <tr>
             <td class="tdBg" width="200px">帐号：</td>
-            <%-- <td><s:textfield name="user.account"/></td> --%>
             <td>
-           		<input type="text" name="user.account" id="account" value="${user.account}" onchange="doVerify();"/>
+           		<input type="text" name="account" id="account" value="${user.account}" onchange="doVerify();"/>
             </td>
         </tr>
         <tr>
             <td class="tdBg" width="200px">密码：</td>
-            <%-- <td><s:textfield name="user.password"/></td> --%>
             <td>
-           		<input type="text" name="user.password" id="password" value="${user.password }"/>
+           		<input type="text" name="password" id="password" value="${user.password }"/>
             </td>
         </tr>
         <tr>
             <td class="tdBg" width="200px">性别：</td>
-            <%-- <td><s:radio list="#{'男':'男','女':'女'}" name="user.gender"/></td> --%>
             <td>
             	<c:if test="${user.gender=='男'}">
-					<label><input name="user.gender" type="radio" value="男" />男 </label> 
-					<label><input name="user.gender" type="radio" value="女" />女 </label> 
-					<script>document.getElementsByName("user.gender")[0].checked="checked";</script>				
+					<label><input name="gender" type="radio" value="男" />男 </label> 
+					<label><input name="gender" type="radio" value="女" />女 </label> 
+					<script>document.getElementsByName("gender")[0].checked="checked";</script>				
 				</c:if>
             	<c:if test="${user.gender=='女'}">
-					<label><input name="user.gender" type="radio" value="男" />男 </label> 
-					<label><input name="user.gender" type="radio" value="女" />女 </label> 
-					<script>document.getElementsByName("user.gender")[1].checked="checked";</script>				
+					<label><input name="gender" type="radio" value="男" />男 </label> 
+					<label><input name="gender" type="radio" value="女" />女 </label> 
+					<script>document.getElementsByName("gender")[1].checked="checked";</script>				
 				</c:if> 
 				
             </td>
@@ -150,52 +145,47 @@
         </tr>
         <tr>
             <td class="tdBg" width="200px">电子邮箱：</td>
-            <%-- <td><s:textfield name="user.email"/></td> --%>
             <td>
-           		<input type="text" name="user.email" value="${user.email }"/>
+           		<input type="text" name="email" value="${user.email }"/>
             </td>
         </tr>
         <tr>
             <td class="tdBg" width="200px">手机号：</td>
-            <%-- <td><s:textfield name="user.mobile"/></td> --%>
             <td>
-           		<input type="text" name="user.mobile" value="${user.mobile}"/>
+           		<input type="text" name="mobile" value="${user.mobile}"/>
             </td>
         </tr>        
         <tr>
             <td class="tdBg" width="200px">生日： </td>
-            <%-- <td><s:textfield id="birthday" name="user.birthday" /></td> --%>
             <td>
-           		<input id="birthday" type="text" name="user.birthday" value="${user.birthday}"
+           		<input id="birthday" type="text" name="birthday" value="${user.birthday}"
 				 readonly="true" onfocus="WdatePicker({'dateFmt':'yyyy-MM-dd'});"/>
             </td>
         </tr>
 		<tr>
             <td class="tdBg" width="200px">状态：</td>
-            <%-- <td><s:radio list="#{'1':'有效','0':'无效'}" name="user.state" value="1"/></td> --%>
             <td>
             	<c:if test="${user.state=='1'}">
-            		<label><input name="user.state" type="radio" value="1" />有效 </label> 
-					<label><input name="user.state" type="radio" value="0" />无效 </label> 
-					<script>document.getElementsByName("user.state")[0].checked="checked";</script>
+            		<label><input name="state" type="radio" value="1" />有效 </label> 
+					<label><input name="state" type="radio" value="0" />无效 </label> 
+					<script>document.getElementsByName("state")[0].checked="checked";</script>
             	</c:if>
             	<c:if test="${user.state=='0'}">
-            		<label><input name="user.state" type="radio" value="1" />有效 </label> 
-					<label><input name="user.state" type="radio" value="0" />无效 </label> 
-					<script>document.getElementsByName("user.state")[1].checked="checked";</script>
+            		<label><input name="state" type="radio" value="1" />有效 </label> 
+					<label><input name="state" type="radio" value="0" />无效 </label> 
+					<script>document.getElementsByName("state")[1].checked="checked";</script>
             	</c:if>
             </td>
         </tr>
         <tr>
             <td class="tdBg" width="200px">备注：</td>
-            <%-- <td><s:textarea name="user.memo" cols="75" rows="3"/></td> --%>
             <td>
-           		<textarea name="user.memo" style="width:500px;height:60px;">${user.memo}</textarea>
+           		<textarea name="memo" style="width:500px;height:60px;">${user.memo}</textarea>
             </td>
         </tr>
     </table>
     <input type="hidden" name="roleIds" id="roleIds" value="${roleIds}"/>
-    <input type="hidden" name="user.id" value="${user.id}"/>
+    <input type="hidden" name="id" value="${user.id}"/>
     <div class="tc mt20">
         <input type="button" class="btnB2" value="保存" onclick="doSubmit();"/>
         &nbsp;&nbsp;&nbsp;&nbsp;

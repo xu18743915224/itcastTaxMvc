@@ -107,8 +107,34 @@ public class UserController {
 	}
 	//编辑保存数据请求---------------------------------------
 	@RequestMapping(value="/user_edit")
-	public String editUser(@ModelAttribute("user") User user){
-		userService.updateUser(user);
+	public String editUser(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("headImg")MultipartFile headImg,String id,
+			String dept,String name,String account,String password,String gender,String email
+			,String mobile,String birthday,String state,String memo) throws Exception, IOException{
+		User findUser=userService.findUserById(id);
+		findUser.setDept(dept);
+		findUser.setName(name);
+		findUser.setAccount(account);
+		findUser.setPassword(password);
+		findUser.setGender(gender);
+		findUser.setEmail(email);
+		findUser.setMobile(mobile);
+		findUser.setBirthday(birthday);
+		findUser.setState(state);
+		findUser.setMemo(memo);
+		//第一步 需要获得 一个地址path 一个名字uuid.jpg
+		//String uploadPath="upload/user";  //保存在web下的路径
+		String path = request.getServletContext().getRealPath("");//获取项目动态绝对路径
+		String uploadPath=path+"upload/user/";  //保存在web下的路径
+		String houZhuiMing=headImg.getOriginalFilename().substring(headImg.getOriginalFilename().lastIndexOf("."));//获取图片的后缀名
+		String writeFileName=UUID.randomUUID().toString().replace("-", "")+houZhuiMing;	//组合的新的uuid文件名
+		//第二步 根据地址和名字创建一个文件 file
+		String headImgPath=uploadPath+writeFileName;
+		File newFileImg=new File(headImgPath);
+		//第三步 将页面获得的图片二进制代码内容写入文件newFileImg
+		headImg.transferTo(newFileImg);		
+		findUser.setHeadImg(headImgPath);
+		userService.updateUser(findUser);
 		return "redirect:user_listUI";
 	}
 	//根据id删除数据----------------------------------------

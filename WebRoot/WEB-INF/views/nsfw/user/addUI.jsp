@@ -37,7 +37,7 @@
     }
     //点击保存提交表单
     function doSubmit(){
-    	/* //全局效验
+    	//全局效验
     	validForm();
     	if(valids==false){
     		return;
@@ -48,8 +48,7 @@
     		$("#account").focus();
     		return;
     	}
-    	alert($("form").serialize());
-    	document.forms[0].action="${basePath}nsfw/user/user_add.action"; */
+    	/* alert($("form").serialize());*/
     	document.forms[0].action="${basePath}nsfw/user/user_add.action";
   		document.forms[0].submit(); 	
     }
@@ -72,11 +71,6 @@
     </script>
 </head>
 <body class="rightBody">
-<!-- <form action="${basePath}nsfw/user/user_add.action" method="post" enctype="multipart/form-data">
-<input type="text" id="name" validate="name" name="id" value="" />
-     选择文件:<input type="file" name="headImg">
-     <input type="submit" value="上传"> 
-</form> -->
 <form name="form1" action="" method="post" enctype="multipart/form-data">
 	<div class="p_d_1">
 	        <div class="p_d_1_1">
