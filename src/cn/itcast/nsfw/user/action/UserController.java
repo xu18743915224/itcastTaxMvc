@@ -42,7 +42,7 @@ public class UserController {
 
 	@Resource 
 	UserService userService;
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~A
 	@InitBinder("user")  
 	public void initBinder1(WebDataBinder binder) {  
 	    binder.setFieldDefaultPrefix("user.");  
