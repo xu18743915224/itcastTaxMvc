@@ -84,14 +84,13 @@ public class UserController {
 		user.setState(state);
 		user.setMemo(memo);
 		//第一步 需要获得 一个地址path 一个名字uuid.jpg
-		//String uploadPath="upload/user";  //保存在web下的路径
 		String path = request.getServletContext().getRealPath("");//获取项目动态绝对路径
-		String uploadPath=path+"upload/user/";  //保存在web下的路径
+		String uploadPath="upload/user/";  //保存在web下的路径
 		String houZhuiMing=headImg.getOriginalFilename().substring(headImg.getOriginalFilename().lastIndexOf("."));//获取图片的后缀名
 		String writeFileName=UUID.randomUUID().toString().replace("-", "")+houZhuiMing;	//组合的新的uuid文件名
 		//第二步 根据地址和名字创建一个文件 file
 		String headImgPath=uploadPath+writeFileName;
-		File newFileImg=new File(headImgPath);
+		File newFileImg=new File(path+uploadPath+writeFileName);
 		//第三步 将页面获得的图片二进制代码内容写入文件newFileImg
 		headImg.transferTo(newFileImg);		
 		user.setHeadImg(headImgPath);
@@ -125,12 +124,12 @@ public class UserController {
 		//第一步 需要获得 一个地址path 一个名字uuid.jpg
 		//String uploadPath="upload/user";  //保存在web下的路径
 		String path = request.getServletContext().getRealPath("");//获取项目动态绝对路径
-		String uploadPath=path+"upload/user/";  //保存在web下的路径
+		String uploadPath="upload/user/";  //保存在web下的路径
 		String houZhuiMing=headImg.getOriginalFilename().substring(headImg.getOriginalFilename().lastIndexOf("."));//获取图片的后缀名
 		String writeFileName=UUID.randomUUID().toString().replace("-", "")+houZhuiMing;	//组合的新的uuid文件名
 		//第二步 根据地址和名字创建一个文件 file
 		String headImgPath=uploadPath+writeFileName;
-		File newFileImg=new File(headImgPath);
+		File newFileImg=new File(path+uploadPath+writeFileName);
 		//第三步 将页面获得的图片二进制代码内容写入文件newFileImg
 		headImg.transferTo(newFileImg);		
 		findUser.setHeadImg(headImgPath);

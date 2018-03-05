@@ -90,8 +90,8 @@
             <td>
                 <c:if test="${user.headImg!=null&&user.headImg!=''}">
                     <img src="${basePath}${user.headImg }" width="100" height="100"/>
+                    <%-- <img src=" ${basePath}upload/user/26ab7be6503c478892eb9066069ad69f.jpg" width="100" height="100"/> --%>
                     <input type="hidden" name="headImg" value="${user.headImg}"/>
-                    ${basePath}
                 </c:if>
                 <c:if test="${user.headImg==null&&user.headImg==''}">
                     <img src="${basePath}${user.headImg }" width="100" height="100"/>
