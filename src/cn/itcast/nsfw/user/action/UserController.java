@@ -61,7 +61,7 @@ public class UserController {
 	public String addUI(){		
 		return "nsfw/user/addUI";
 	}
-	//新增保存数据请求-----------------------------------
+	//新增保存数据请求-----------------------------------ssss
 	/*@RequestMapping(value="/user_add" )
 	public String addUser(@ModelAttribute("user") User user){
 		userService.saveUser(user);		
